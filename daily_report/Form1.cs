@@ -37,7 +37,7 @@ namespace daily_report
         private void button2_Click(object sender, EventArgs e)
         {
             StreamWriter w = new StreamWriter("path\\to\\directory" + DateTime.Now.ToString("yyyymmdd") + "_daily_report.txt");
-            w.WriteLine(this.today.report());
+            this.today.report(w);
             w.Close();
             MessageBox.Show("出力しました！");
         }
@@ -61,16 +61,12 @@ namespace daily_report
 
         }
 
-        public string report()
+        public void report(StreamWriter writer)
         {
-            string rtn_str = "";
-
             foreach(what_i_did content in this.contents)
             {
-                rtn_str += content.show_what_did();
+                writer.WriteLine( content.show_what_did());
             }
-
-            return rtn_str;
         }
     }
 
