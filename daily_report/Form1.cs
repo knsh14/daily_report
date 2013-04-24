@@ -36,7 +36,7 @@ namespace daily_report
 
         private void button2_Click(object sender, EventArgs e)
         {
-            StreamWriter w = new StreamWriter("C:\\Users\\kenshi\\Desktop\\" + DateTime.Now.ToString("yyyymmdd") + "_daily_report.txt");
+            StreamWriter w = new StreamWriter("path\\to\\directory" + DateTime.Now.ToString("yyyymmdd") + "_daily_report.txt");
             w.WriteLine(this.today.report());
             w.Close();
             MessageBox.Show("出力しました！");
