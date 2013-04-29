@@ -19,11 +19,12 @@ namespace daily_report
             InitializeComponent();
             this.today = new today_report();
 
-            if (Properties.Settings.Default.output_dir_path == "")
+            if (Settings1.Default.output_dir_path == "")
             {
                 MessageBox.Show("日報の出力先が設定されていないので，設定をお願いします");
                 this.set_output_dir_path();
             }
+
 
         }
         private void button1_Click(object sender, EventArgs e)//日報のトピックを登録するボタンが押されたとき
@@ -77,7 +78,7 @@ namespace daily_report
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 //MessageBox.Show(folderBrowserDialog1.SelectedPath);
-                Properties.Settings.Default.output_dir_path = folderBrowserDialog1.SelectedPath;
+                Settings1.Default.output_dir_path = folderBrowserDialog1.SelectedPath;
             }
             else
             {
@@ -85,12 +86,12 @@ namespace daily_report
             }
             // 不要になった時点で破棄する (正しくは オブジェクトの破棄を保証する を参照)
             folderBrowserDialog1.Dispose();
-            Properties.Settings.Default.Save();
+            Settings1.Default.Save();
         }
 
         private string get_output_dir_path()
         {
-            return Properties.Settings.Default.output_dir_path;
+            return Settings1.Default.output_dir_path;
         }
     }
 
