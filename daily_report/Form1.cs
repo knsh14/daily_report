@@ -39,6 +39,7 @@ namespace daily_report
             }
 
             this.textBox1.Text = "";
+            this.textBox1.Focus();
         }
 
         private void button2_Click(object sender, EventArgs e)//出力ボタンが押されたとき
