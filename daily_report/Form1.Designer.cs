@@ -43,7 +43,7 @@
             this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.textBox1.Location = new System.Drawing.Point(3, 377);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(232, 27);
+            this.textBox1.Size = new System.Drawing.Size(447, 27);
             this.textBox1.TabIndex = 0;
             // 
             // button1
@@ -79,9 +79,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(242, 377);
+            this.button3.Location = new System.Drawing.Point(381, 12);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(208, 27);
+            this.button3.Size = new System.Drawing.Size(69, 37);
             this.button3.TabIndex = 5;
             this.button3.Text = "出力先を変更する";
             this.button3.UseVisualStyleBackColor = true;

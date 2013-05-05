@@ -39,11 +39,12 @@ namespace daily_report
             }
 
             this.textBox1.Text = "";
+            this.textBox1.Focus();
         }
 
         private void button2_Click(object sender, EventArgs e)//出力ボタンが押されたとき
         {
-            StreamWriter w = new StreamWriter(this.get_output_dir_path() + @"\" +DateTime.Now.ToString("yyyymmdd") + "_daily_report.txt");
+            StreamWriter w = new StreamWriter(this.get_output_dir_path() + @"\" +DateTime.Now.ToString("yyyyMMdd") + "_daily_report.txt");
             this.today.report(w);
             w.Close();
             MessageBox.Show("出力しました！");
