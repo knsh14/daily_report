@@ -138,8 +138,7 @@ namespace daily_report
             }
             else
             {
-                this.button4.Text = "昼飯に行く";
-                this.button4.Tag = "go";
+                this.button4.Hide();
             }
         }
 
