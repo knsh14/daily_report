@@ -18,6 +18,7 @@ namespace daily_report
         {
             InitializeComponent();
             this.today = new today_report();
+            this.FormClosing += new FormClosingEventHandler(Form1_FormClosing);
 
             if (Settings1.Default.output_dir_path == "")
             {
@@ -40,19 +41,35 @@ namespace daily_report
 
             this.textBox1.Text = "";
             this.textBox1.Focus();
+            StreamWriter w;
+            if (File.Exists(this.get_output_dir_path() + @"\" + DateTime.Now.ToString("yyyyMMdd") + "_daily_report.txt"))
+            {
+                w = new StreamWriter(this.get_output_dir_path() + @"\" + DateTime.Now.ToString("yyyyMMdd") + "_daily_report.txt", true);
+            }
+            else
+            {
+                w = new StreamWriter(this.get_output_dir_path() + @"\" + DateTime.Now.ToString("yyyyMMdd") + "_daily_report.txt");
+            }
+            this.today.report(w, true);
+            w.Close();
+
+
+
         }
 
         private void button2_Click(object sender, EventArgs e)//出力ボタンが押されたとき
         {
-            StreamWriter w = new StreamWriter(this.get_output_dir_path() + @"\" +DateTime.Now.ToString("yyyyMMdd") + "_daily_report.txt");
-            this.today.report(w);
+            StreamWriter w = new StreamWriter(this.get_output_dir_path() + @"\" + DateTime.Now.ToString("yyyyMMdd") + "_daily_report.txt");
+            this.today.report(w, true);
             w.Close();
+
             MessageBox.Show("出力しました！");
             System.Diagnostics.Process.Start(this.get_output_dir_path());
         }
 
         private void button3_Click(object sender, EventArgs e)//出力先変更ボタンが押されたとき
         {
+
             this.set_output_dir_path();
         }
 
@@ -94,6 +111,21 @@ namespace daily_report
         {
             return Settings1.Default.output_dir_path;
         }
+
+
+        // FormClosing イベントのイベントハンドラ
+        void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                   "終了しますか？\n終了しちゃうとデータが飛んじゃうよ？", "一応聞くけど",
+                   MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.No)  // [いいえ] の場合
+            {
+                e.Cancel = true;  // 終了処理を中止
+            }
+        }
+
     }
 
     //今日なにしたかをまとめておくクラス
@@ -109,17 +141,26 @@ namespace daily_report
         public void add_content(String contents)
         {
             int length = this.contents.Length;
-            Array.Resize(ref this.contents, length+1);
+            Array.Resize(ref this.contents, length + 1);
             this.contents[length] = new what_i_did(contents);
 
         }
 
-        public void report(StreamWriter writer)
+        public void report(StreamWriter writer, bool one_by_one)
         {
-            foreach(what_i_did content in this.contents)
+
+            if (one_by_one)
             {
-                writer.WriteLine( content.show_what_did());
+                writer.WriteLine(this.contents.Last().show_what_did());
             }
+            else
+            {
+                foreach (what_i_did content in this.contents)
+                {
+                    writer.WriteLine(content.show_what_did());
+                }
+            }
+
         }
     }
 
@@ -137,7 +178,7 @@ namespace daily_report
 
         public String show_what_did()
         {
-            return this.dt.ToString("yyyy年MM月dd日 HH時mm分ss秒 :: ") + this.content;// +"\n";
+            return this.dt.ToString("HH時mm分ss秒 :: ") + this.content;// +"\n";
         }
     }
 }
