@@ -130,7 +130,7 @@ namespace daily_report
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (this.button4.Tag == "go")
+            if (this.button4.Tag.ToString() == "go")
             {
                 MessageBox.Show("昼飯に行っている");
                 this.button4.Text = "昼飯から帰ってきた";
