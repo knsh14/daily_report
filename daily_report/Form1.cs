@@ -30,6 +30,8 @@ namespace daily_report
         }
         private void button1_Click(object sender, EventArgs e)//日報のトピックを登録するボタンが押されたとき
         {
+
+            string path_to_daily_report = this.get_output_dir_path() + @"\" + DateTime.Now.ToString("yyyyMMdd") + "_daily_report.txt";//日報の出力ファイル名
             if (this.textBox1.Text == "")//一応入力のチェックはする
             {
                 MessageBox.Show("なんもしてねえのかよ！");
@@ -42,13 +44,13 @@ namespace daily_report
             this.textBox1.Text = "";
             this.textBox1.Focus();
             StreamWriter w;
-            if (File.Exists(this.get_output_dir_path() + @"\" + DateTime.Now.ToString("yyyyMMdd") + "_daily_report.txt"))
+            if (File.Exists(path_to_daily_report))
             {
-                w = new StreamWriter(this.get_output_dir_path() + @"\" + DateTime.Now.ToString("yyyyMMdd") + "_daily_report.txt", true);
+                w = new StreamWriter(path_to_daily_report, true);
             }
             else
             {
-                w = new StreamWriter(this.get_output_dir_path() + @"\" + DateTime.Now.ToString("yyyyMMdd") + "_daily_report.txt");
+                w = new StreamWriter(path_to_daily_report);
             }
             this.today.report(w, true);
             w.Close();
@@ -123,6 +125,21 @@ namespace daily_report
             if (result == DialogResult.No)  // [いいえ] の場合
             {
                 e.Cancel = true;  // 終了処理を中止
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (this.button4.Tag == "go")
+            {
+                MessageBox.Show("昼飯に行っている");
+                this.button4.Text = "昼飯から帰ってきた";
+                this.button4.Tag = "back";
+            }
+            else
+            {
+                this.button4.Text = "昼飯に行く";
+                this.button4.Tag = "go";
             }
         }
 
