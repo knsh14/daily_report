@@ -31,38 +31,25 @@ namespace daily_report
         private void button1_Click(object sender, EventArgs e)//日報のトピックを登録するボタンが押されたとき
         {
 
-            string path_to_daily_report = this.get_output_dir_path() + @"\" + DateTime.Now.ToString("yyyyMMdd") + "_daily_report.txt";//日報の出力ファイル名
+            
             if (this.textBox1.Text == "")//一応入力のチェックはする
             {
                 MessageBox.Show("なんもしてねえのかよ！");
             }
             else
             {
-                this.today.add_content(this.textBox1.Text);
+                this.today.add_content(this.textBox1.Text, false);
             }
 
             this.textBox1.Text = "";
             this.textBox1.Focus();
-            StreamWriter w;
-            if (File.Exists(path_to_daily_report))
-            {
-                w = new StreamWriter(path_to_daily_report, true);
-            }
-            else
-            {
-                w = new StreamWriter(path_to_daily_report);
-            }
-            this.today.report(w, true);
-            w.Close();
-
-
-
+            this.output_report();
         }
 
         private void button2_Click(object sender, EventArgs e)//出力ボタンが押されたとき
         {
             StreamWriter w = new StreamWriter(this.get_output_dir_path() + @"\" + DateTime.Now.ToString("yyyyMMdd") + "_daily_report.txt");
-            this.today.report(w, true);
+            this.today.report(w, false);
             w.Close();
 
             MessageBox.Show("出力しました！");
@@ -109,10 +96,6 @@ namespace daily_report
             Settings1.Default.Save();
         }
 
-        private string get_output_dir_path()
-        {
-            return Settings1.Default.output_dir_path;
-        }
 
 
         // FormClosing イベントのイベントハンドラ
@@ -130,16 +113,45 @@ namespace daily_report
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (this.button4.Tag.ToString() == "go")
+                this.today.add_content("", true);
+                MessageBox.Show("昼飯から帰ってきた");
+                DateTime back = DateTime.Now;
+                this.today.change_content(back.ToString("HH時mm分ss秒 :: ")+"昼飯に行ってきました");
+                this.button4.Hide();
+                this.output_report();
+                
+        }
+
+
+
+/// <summary>
+/// こっから下は自分で実装したメソッド
+/// </summary>
+/// <returns></returns>
+/// 
+        //設定された出力先を知るためのメソッド．
+        //返り値はString
+        private string get_output_dir_path()
+        {
+            return Settings1.Default.output_dir_path;
+        }
+
+        //入力のたびに出力するメソッド．
+        //特に引数も返り値もない(今後成功の判断のためにboolianの返り値を採用するかも)
+        private void output_report()
+        {
+            string path_to_daily_report = this.get_output_dir_path() + @"\" + DateTime.Now.ToString("yyyyMMdd") + "_daily_report.txt";//日報の出力ファイル名
+            StreamWriter w;
+            if (File.Exists(path_to_daily_report))
             {
-                MessageBox.Show("昼飯に行っている");
-                this.button4.Text = "昼飯から帰ってきた";
-                this.button4.Tag = "back";
+                w = new StreamWriter(path_to_daily_report, true);
             }
             else
             {
-                this.button4.Hide();
+                w = new StreamWriter(path_to_daily_report);
             }
+            this.today.report(w, true);
+            w.Close();
         }
 
     }
@@ -154,12 +166,18 @@ namespace daily_report
             this.contents = new what_i_did[0];
         }
 
-        public void add_content(String contents)
+        //新しい日報を突っ込む(変更可能かどうかは後ろのフラグで決める)
+        public void add_content(String contents, Boolean is_changeable)
         {
             int length = this.contents.Length;
             Array.Resize(ref this.contents, length + 1);
-            this.contents[length] = new what_i_did(contents);
+            this.contents[length] = new what_i_did(contents, is_changeable);
 
+        }
+
+        public void change_content(String content)
+        {
+            this.contents.Last().change_what_did(content);
         }
 
         public void report(StreamWriter writer, bool one_by_one)
@@ -185,16 +203,32 @@ namespace daily_report
     {
         String content;
         DateTime dt;
+        Boolean is_changeable;
+        string separate_str;
 
-        public what_i_did(String input_content)
+        public what_i_did(String input_content, Boolean changeable_content)
         {
             this.content = input_content;
             dt = DateTime.Now;
+            this.is_changeable = changeable_content;
+            this.separate_str = changeable_content?" ～ ":" :: ";
+
         }
 
         public String show_what_did()
         {
-            return this.dt.ToString("HH時mm分ss秒 :: ") + this.content;// +"\n";
+            return this.dt.ToString("HH時mm分ss秒") + this.separate_str + this.content;// +"\n";
+        }
+
+        public void change_what_did(String input_content)
+        {
+            if (this.is_changeable)
+            {
+                this.content = input_content;
+            }
+            else
+            {
+            }
         }
     }
 }

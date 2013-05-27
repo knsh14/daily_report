@@ -94,7 +94,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 50);
             this.button4.TabIndex = 6;
-            this.button4.Tag = "go";
+            this.button4.Tag = "";
             this.button4.Text = "昼飯に行く";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
