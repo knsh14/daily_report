@@ -13,6 +13,7 @@ namespace daily_report
     public partial class Form1 : Form
     {
         today_report today;
+        Form2 form2;
 
         public Form1()
         {
@@ -26,7 +27,9 @@ namespace daily_report
                 this.set_output_dir_path();
             }
 
-
+            this.form2 = new Form2();
+            this.AddOwnedForm(form2);  // 親 Form が form2 を所有する
+            form2.Show();
         }
         private void button1_Click(object sender, EventArgs e)//日報のトピックを登録するボタンが押されたとき
         {
