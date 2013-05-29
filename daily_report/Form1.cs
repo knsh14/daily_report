@@ -26,10 +26,6 @@ namespace daily_report
                 MessageBox.Show("日報の出力先が設定されていないので，設定をお願いします");
                 this.set_output_dir_path();
             }
-
-            this.form2 = new Form2();
-            this.AddOwnedForm(form2);  // 親 Form が form2 を所有する
-            form2.Show();
         }
         private void button1_Click(object sender, EventArgs e)//日報のトピックを登録するボタンが押されたとき
         {
@@ -43,20 +39,11 @@ namespace daily_report
             {
                 this.today.add_content(this.textBox1.Text, false);
             }
-
+            
             this.textBox1.Text = "";
             this.textBox1.Focus();
             this.output_report();
-        }
-
-        private void button2_Click(object sender, EventArgs e)//出力ボタンが押されたとき
-        {
-            StreamWriter w = new StreamWriter(this.get_output_dir_path() + @"\" + DateTime.Now.ToString("yyyyMMdd") + "_daily_report.txt");
-            this.today.report(w, false);
-            w.Close();
-
-            MessageBox.Show("出力しました！");
-            System.Diagnostics.Process.Start(this.get_output_dir_path());
+            
         }
 
         private void button3_Click(object sender, EventArgs e)//出力先変更ボタンが押されたとき
@@ -157,6 +144,29 @@ namespace daily_report
             w.Close();
         }
 
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ファイルToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StreamWriter w = new StreamWriter(this.get_output_dir_path() + @"\" + DateTime.Now.ToString("yyyyMMdd") + "_daily_report.txt");
+            this.today.report(w, false);
+            w.Close();
+
+            MessageBox.Show("出力しました！");
+            System.Diagnostics.Process.Start(this.get_output_dir_path());
+        }
+
+        private void 別画面ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.form2 = new Form2();
+            this.AddOwnedForm(form2);  // 親 Form が form2 を所有する
+            this.form2.Show();
+            this.today.report(this.form2);
+        }
+
     }
 
     //今日なにしたかをまとめておくクラス
@@ -183,6 +193,7 @@ namespace daily_report
             this.contents.Last().change_what_did(content);
         }
 
+        //ファイル出力用
         public void report(StreamWriter writer, bool one_by_one)
         {
 
@@ -198,6 +209,15 @@ namespace daily_report
                 }
             }
 
+        }
+
+        //別のフォーム出力用
+        public void report(Form2 form)
+        {
+            foreach (what_i_did content in this.contents)
+            {
+                form.show_content(content.show_what_did());
+            }
         }
     }
 
