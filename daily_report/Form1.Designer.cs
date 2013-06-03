@@ -31,12 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button3 = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.button4 = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ファイルToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.別画面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -57,30 +61,20 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(241, 410);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(209, 26);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "出力する";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(3, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 29);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(310, 146);
+            this.pictureBox1.Size = new System.Drawing.Size(232, 105);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(381, 12);
+            this.button3.Location = new System.Drawing.Point(381, 29);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(69, 37);
             this.button3.TabIndex = 5;
@@ -90,14 +84,48 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(12, 321);
+            this.button4.Location = new System.Drawing.Point(241, 410);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 50);
+            this.button4.Size = new System.Drawing.Size(209, 26);
             this.button4.TabIndex = 6;
             this.button4.Tag = "";
             this.button4.Text = "昼飯に行く";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(462, 26);
+            this.menuStrip1.TabIndex = 7;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ファイルToolStripMenuItem,
+            this.別画面ToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(44, 22);
+            this.toolStripMenuItem1.Text = "出力";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // ファイルToolStripMenuItem
+            // 
+            this.ファイルToolStripMenuItem.Name = "ファイルToolStripMenuItem";
+            this.ファイルToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.ファイルToolStripMenuItem.Text = "ファイル";
+            this.ファイルToolStripMenuItem.Click += new System.EventHandler(this.ファイルToolStripMenuItem_Click);
+            // 
+            // 別画面ToolStripMenuItem
+            // 
+            this.別画面ToolStripMenuItem.Name = "別画面ToolStripMenuItem";
+            this.別画面ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.別画面ToolStripMenuItem.Text = "別画面";
+            this.別画面ToolStripMenuItem.Click += new System.EventHandler(this.別画面ToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -108,12 +136,15 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,11 +154,14 @@
 
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem ファイルToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 別画面ToolStripMenuItem;
     }
 }
 
