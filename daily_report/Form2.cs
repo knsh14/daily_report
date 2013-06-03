@@ -13,7 +13,7 @@ namespace daily_report
     {
         public Form2(int x, int y, int width)
         {
-
+            //このフォームを表示するときに本体とかぶらないように開始位置を指定する
             this.StartPosition = FormStartPosition.Manual;
             this.DesktopLocation = new Point((int)Math.Ceiling(x + width * 1.1), y);
             InitializeComponent();
@@ -21,7 +21,8 @@ namespace daily_report
 
         public void show_content(String content)
         {
-            //なんか表示できるようなコードを書く
+            //渡されたものをリストボックスに突っ込む
+            //突っ込むためのコードはForm1に書いてある
             this.listBox1.Items.Add(content);
         }
 

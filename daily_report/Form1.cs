@@ -109,6 +109,7 @@ namespace daily_report
                 this.today.change_content(back.ToString("HH時mm分ss秒 :: ")+"昼飯に行ってきました");
                 this.button4.Hide();
                 this.output_report();
+                this.button1.Width = this.textBox1.Width;
                 
         }
 
