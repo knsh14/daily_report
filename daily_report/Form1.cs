@@ -161,7 +161,11 @@ namespace daily_report
 
         private void 別画面ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.form2 = new Form2();
+            int x = this.DesktopLocation.X;
+            int y = this.DesktopLocation.Y;
+            int width = this.Size.Width;
+
+            this.form2 = new Form2(x,y, width);
             this.AddOwnedForm(form2);  // 親 Form が form2 を所有する
             this.form2.Show();
             this.today.report(this.form2);

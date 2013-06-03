@@ -11,8 +11,11 @@ namespace daily_report
 {
     public partial class Form2 : Form
     {
-        public Form2()
+        public Form2(int x, int y, int width)
         {
+
+            this.StartPosition = FormStartPosition.Manual;
+            this.DesktopLocation = new Point((int)Math.Ceiling(x + width * 1.1), y);
             InitializeComponent();
         }
 
