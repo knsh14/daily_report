@@ -39,6 +39,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ファイルToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.別画面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.履歴チェックToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -107,7 +108,8 @@
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ファイルToolStripMenuItem,
-            this.別画面ToolStripMenuItem});
+            this.別画面ToolStripMenuItem,
+            this.履歴チェックToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(44, 22);
             this.toolStripMenuItem1.Text = "出力";
@@ -116,16 +118,23 @@
             // ファイルToolStripMenuItem
             // 
             this.ファイルToolStripMenuItem.Name = "ファイルToolStripMenuItem";
-            this.ファイルToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.ファイルToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ファイルToolStripMenuItem.Text = "ファイル";
             this.ファイルToolStripMenuItem.Click += new System.EventHandler(this.ファイルToolStripMenuItem_Click);
             // 
             // 別画面ToolStripMenuItem
             // 
             this.別画面ToolStripMenuItem.Name = "別画面ToolStripMenuItem";
-            this.別画面ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.別画面ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.別画面ToolStripMenuItem.Text = "別画面";
             this.別画面ToolStripMenuItem.Click += new System.EventHandler(this.別画面ToolStripMenuItem_Click);
+            // 
+            // 履歴チェックToolStripMenuItem
+            // 
+            this.履歴チェックToolStripMenuItem.Name = "履歴チェックToolStripMenuItem";
+            this.履歴チェックToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.履歴チェックToolStripMenuItem.Text = "履歴チェック";
+            this.履歴チェックToolStripMenuItem.Click += new System.EventHandler(this.履歴チェックToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -162,6 +171,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ファイルToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 別画面ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 履歴チェックToolStripMenuItem;
     }
 }
 
