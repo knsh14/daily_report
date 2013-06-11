@@ -28,7 +28,7 @@ namespace daily_report
 
         public int get_items_num()
         {
-            return this.listBox1.Items.Count;
+            return this.listBox1.Items.Count;       
         }
 
         public void delete_all_items()

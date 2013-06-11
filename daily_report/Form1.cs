@@ -14,6 +14,7 @@ namespace daily_report
     {
         today_report today;
         Form2 form2;
+        Form3 form3;
 
         public Form1()
         {
@@ -170,6 +171,17 @@ namespace daily_report
             this.AddOwnedForm(form2);  // 親 Form が form2 を所有する
             this.form2.Show();
             this.today.report(this.form2);
+        }
+
+        private void 履歴チェックToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int x = this.DesktopLocation.X;
+            int y = this.DesktopLocation.Y;
+            int width = this.Size.Width;
+
+            this.form3 = new Form3(x, y, width);
+            this.AddOwnedForm(form3);  // 親 Form が form3 を所有する
+            this.form3.Show();
         }
 
     }
